@@ -4,7 +4,6 @@ import Resume from './components/Resume'
 import './styles.css'
 
 const App = () =>{
-
   return (
     <div className="mainContainer">
       <Header/>

@@ -34,6 +34,23 @@
     padding-top: 10px;
 }
 
+
+.personalContainerSubmitted {
+    background-color: rgb(255, 161, 161);
+    width: 500px;
+    height: 450px;
+    padding-left: 20px;
+    padding-top: 30px;
+}
+
+.editPersonalInfoButton {
+    margin-top: 205px;
+}
+
+.displayOccupation {
+    font-style: italic;
+}
+
 .educationContainer {
     width: 700px;
     height: 450px;
