@@ -46,11 +46,29 @@ class Resume extends React.Component {
         })
     }
 
+    handleValidation = () => {
+        let validForm
+        if(this.state.name === '' 
+            || this.state.surname === ''
+            || this.state.occupation === ''
+            || this.state.email === ''){
+            validForm = false
+        } else {
+            validForm = true
+        }
+        return validForm
+    }
+
     submitPersonalInfo = (e) => {
         e.preventDefault()
-        this.setState({
-            editing: false
-        })
+        let validForm = this.handleValidation()
+        if(validForm){
+            this.setState({
+                editing: false
+            })
+        } else {
+            alert('All fields must be complete')
+        }
     }
 
     editPersonalInfo = () => {

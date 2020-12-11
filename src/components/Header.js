@@ -12,7 +12,7 @@ class Header extends React.Component {
                     <h1>CV-Builder Application</h1>
                 </div>
                 <div>
-                    <h2>Make your CV</h2>
+                    <h3>Make your CV with Ease!</h3>
                 </div>
             </div>
         )
