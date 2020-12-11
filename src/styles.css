@@ -1,0 +1,55 @@
+.mainContainer {
+    margin: 20px auto;
+    width: 1200px;
+    height: 1000px;
+}
+
+.headerContainer {
+    background-color: rgb(108, 248, 120);
+    height: 10%;
+}
+
+.resumeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: green;
+    height: 90%;
+}
+
+.personalAndEducationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: pink;
+    width: 1200px;
+    height: 450px;
+}
+
+.personalContainer {
+    background-color: rgb(255, 161, 161);
+    width: 500px;
+    height: 450px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.educationContainer {
+    width: 700px;
+    height: 450px;
+    background-color: red;
+}
+
+.experienceContainer {
+    background-color: yellow;
+    width: 1200px;
+    height: 550px;
+}
+
+.personalInputForm {
+    margin-left: 12px;
+}
+
+.form-control {
+    width: 300px;
+}
