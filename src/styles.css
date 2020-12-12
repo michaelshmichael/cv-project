@@ -27,26 +27,31 @@
     height: 450px;
 }
 
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Personal Container*/
 .personalContainer {
     background-color: rgb(84, 152, 253);
-    width: 530px;
+    width: 420px;
     height: 450px;
     padding-left: 20px;
     padding-top: 10px;
 }
 
+.personalInputForm {
+    margin-left: 12px;
+}
 
 .personalContainerSubmitted {
     background-color: rgb(84, 152, 253);
-    width: 300px;
+    width: 420px;
     height: 450px;
     padding-left: 20px;
-    padding-top: 30px;
+    padding-top: 10px;
     font-family: 'Karla', sans-serif;
 }
 
 .editPersonalInfoButton {
-    margin-top: 205px;
+    margin-top: 220px;
 }
 
 .displayOccupation {
@@ -54,12 +59,15 @@
     padding-left: 2px;
 }
 
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Education Container*/
+
 .educationContainer {
     display: flex;
     flex-direction: row;
-    width: 900px;
+    width: 780px;
     height: 450px;
-    background-color: rgb(85, 151, 54);
+    background-color: pink
 }
 
 .educationInput {
@@ -69,9 +77,15 @@
     background-color: pink;
 }
 
+.educationInputHidden {
+    padding-left: 20px;
+    padding-top: 10px;
+    width: 400px;
+    opacity: 0.3;
+}
+
 .educationDisplay {
     width: 450px;
-    background-color: yellow;
 }
 
 .qualificationsContainer {
@@ -90,12 +104,11 @@
     margin-top: 40px;
     height: 100px;
     width: 400px;
-    background-color: rgb(212, 123, 253);
+    background-color: rgb(84, 152, 253);
     border-radius: 10px;
     padding-left: 10px;
     padding-left: 10px;
-    border: 3px solid rgb(129, 75, 255);
-    box-shadow: 3px 3px;
+    box-shadow: 3px 3px rgb(255, 128, 149);
 }
 
 .qualificationDisplayLeft {
@@ -106,14 +119,13 @@
     padding-left: 5px;
 }
 
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Experience Container*/
 .experienceContainer {
     background-color: rgb(129, 75, 255);
     width: 1200px;
     height: 550px;
-}
-
-.personalInputForm {
-    margin-left: 12px;
 }
 
 .form-control {
@@ -127,6 +139,8 @@
 
 
 
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Slider Checkbox*/
 
 #switchContainer {
     position: absolute;
@@ -144,65 +158,62 @@
     width: 120px;
     margin-top: -4px;
 }
-/*Toggle switch */
+
 .switch {
     position: relative;
     width: 30px;
     height: 18px;
-  }
+}
   
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    top: 2px;
-    bottom: 2px;
-    left: 2px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(11px);
-    -ms-transform: translateX(11px);
-    transform: translateX(11px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 14px;
+width: 14px;
+top: 2px;
+bottom: 2px;
+left: 2px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #2196F3;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(11px);
+-ms-transform: translateX(11px);
+transform: translateX(11px);
+}
+
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}

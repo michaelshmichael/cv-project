@@ -11,6 +11,7 @@ class Education extends React.Component {
             endDate: '',
             studyingNow: '',
             endDateClass: '',
+            numberOfQualifications: 0,
             qualificationArray: []
         }
     }
@@ -67,21 +68,30 @@ class Education extends React.Component {
     }
 
     submitEducationInformation = (e) => {
+        console.log(this.state.numberOfQualifications)
         e.preventDefault()
+        let endDate
+        if(this.state.endDate === ''){
+            endDate = 'ongoing'
+        } else {
+            endDate = this.state.endDate
+        }
         let newQualification = {
             university: this.state.university,
             qualification: this.state.qualification,
             startDate: this.state.startDate,
-            endDate: this.state.endDate
+            endDate: endDate
         }
         this.setState({
             qualificationArray: this.state.qualificationArray.concat(newQualification),
             university: '',
             qualification: '',
             startDate: '',
-            endDate: ''    
+            endDate: '',
+            numberOfQualifications: this.state.numberOfQualifications+1  
         })
     }
+    
 
     deleteQualification = (e) => {
         e = parseInt(e)
@@ -89,14 +99,21 @@ class Education extends React.Component {
         let array2 = this.state.qualificationArray.slice(e+1, this.state.qualificationArray.length)
         let finalArray = array1.concat(array2)
         this.setState({
-            qualificationArray: finalArray
+            qualificationArray: finalArray,
+            numberOfQualifications: this.state.numberOfQualifications-1
         })
     }
  
     render(){
+        let exampleClassName
+        if(this.state.numberOfQualifications > 2){
+            exampleClassName = 'educationInputHidden'
+        } else {
+            exampleClassName = 'educationInput'
+        }
         return(
             <div className='educationContainer'>
-            <div className='educationInput'>
+            <div className={exampleClassName}>
             <div id='switchContainer'>
                 <div className='switchText'><p>Still Studying?</p>
                 </div>
@@ -109,7 +126,6 @@ class Education extends React.Component {
                 </label>
                 </div>
             </div>
-            
                 <h3>Education Details</h3>
                 <form>
                 <div class="form-group">
@@ -161,6 +177,7 @@ class Education extends React.Component {
             <div className='educationDisplay'>
                 <div className='qualificationsContainer'>
                 {this.state.qualificationArray.map((qualification, i) => {
+                          
                     return <div key={uniqid()} className='qualificationContainer'>
                     <div className='qualificationDisplayLeft'>
                         <div className='universityNameDisplay'> 
