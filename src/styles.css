@@ -29,7 +29,7 @@
 
 .personalContainer {
     background-color: rgb(84, 152, 253);
-    width: 500px;
+    width: 530px;
     height: 450px;
     padding-left: 20px;
     padding-top: 10px;
@@ -38,7 +38,7 @@
 
 .personalContainerSubmitted {
     background-color: rgb(84, 152, 253);
-    width: 500px;
+    width: 300px;
     height: 450px;
     padding-left: 20px;
     padding-top: 30px;
@@ -55,9 +55,55 @@
 }
 
 .educationContainer {
-    width: 700px;
+    display: flex;
+    flex-direction: row;
+    width: 900px;
     height: 450px;
     background-color: rgb(85, 151, 54);
+}
+
+.educationInput {
+    padding-left: 20px;
+    padding-top: 10px;
+    width: 400px;
+    background-color: pink;
+}
+
+.educationDisplay {
+    width: 450px;
+    background-color: yellow;
+}
+
+.qualificationsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 450px;
+    background-color:pink;
+}
+
+.qualificationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 40px;
+    height: 100px;
+    width: 400px;
+    background-color: rgb(212, 123, 253);
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-left: 10px;
+    border: 3px solid rgb(129, 75, 255);
+    box-shadow: 3px 3px;
+}
+
+.qualificationDisplayLeft {
+    width: 355px;
+}
+
+.qualificationButton {
+    padding-left: 5px;
 }
 
 .experienceContainer {
@@ -73,3 +119,90 @@
 .form-control {
     width: 300px;
 }
+
+#disabledEndDate {
+    background-color: rgb(248, 229, 167);
+}
+
+
+
+
+
+#switchContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: 303px;
+    margin-left: 130px;
+    width: 150px;
+    height: 20px;
+}
+
+.switchText {
+    width: 120px;
+    margin-top: -4px;
+}
+/*Toggle switch */
+.switch {
+    position: relative;
+    width: 30px;
+    height: 18px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(11px);
+    -ms-transform: translateX(11px);
+    transform: translateX(11px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

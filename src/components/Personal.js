@@ -1,13 +1,80 @@
 import React from 'react'
 
 class Personal extends React.Component {
-    constructor (props) {
-        super(props)
+    constructor () {
+        super()
+        this.updateInputName.bind(this)
+        this.updateInputSurname.bind(this)
+        this.updateOccupation.bind(this)
+        this.updateEmail.bind(this)
+        this.submitPersonalInfo.bind(this)
+        this.editPersonalInfo.bind(this)
+        this.state = {
+            editing: true,
+            name: '',
+            surname: '',
+            occupation: '',
+            email: ''
+        }
+    }
+
+    updateInputName = (e) => {
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    updateInputSurname = (e) => {
+        this.setState({
+            surname: e.target.value
+        })
+    }
+
+    updateOccupation = (e) => {
+        this.setState({
+            occupation: e.target.value
+        })
+    }
+
+    updateEmail = (e) => {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handleValidation = () => {
+        let validForm
+        if(this.state.name === '' 
+            || this.state.surname === ''
+            || this.state.occupation === ''
+            || this.state.email === ''){
+            validForm = false
+        } else {
+            validForm = true
+        }
+        return validForm
+    }
+
+    submitPersonalInfo = (e) => {
+        e.preventDefault()
+        let validForm = this.handleValidation()
+        if(validForm){
+            this.setState({
+                editing: false
+            })
+        } else {
+            alert('All fields must be complete')
+        }
+    }
+
+    editPersonalInfo = () => {
+        this.setState({
+            editing: true
+        })
     }
 
     render(){
-        const editing = this.props.editing
-        if(editing) {
+        if(this.state.editing) {
             return(
             <div className='personalContainer'>
                 <h3>Personal Details</h3>
@@ -17,9 +84,9 @@ class Personal extends React.Component {
                         <input type="text" 
                             class="form-control" 
                             id="firstNameInput"
-                            placeholder={this.props.name}
-                            value={this.props.name}
-                            onChange={e => this.props.updateInputName(e)}
+                            placeholder={this.state.name}
+                            value={this.state.name}
+                            onChange={e => this.updateInputName(e)}
                         ></input>
                     </div>
                     <div class="form-group">
@@ -27,9 +94,9 @@ class Personal extends React.Component {
                         <input type="text" 
                             class="form-control" 
                             id="surnameInput"
-                            placeholder={this.props.surname}
-                            value={this.props.surname}
-                            onChange={e => this.props.updateInputSurname(e)}
+                            placeholder={this.state.surname}
+                            value={this.state.surname}
+                            onChange={e => this.updateInputSurname(e)}
                         ></input>
                     </div>
                     <div class="form-group">
@@ -37,9 +104,9 @@ class Personal extends React.Component {
                         <input type="text" 
                             class="form-control" 
                             id="occupationInput"
-                            placeholder={this.props.occupation}
-                            value={this.props.occupation}
-                            onChange={e => this.props.updateOccupation(e)}
+                            placeholder={this.state.occupation}
+                            value={this.state.occupation}
+                            onChange={e => this.updateOccupation(e)}
                         ></input>
                     </div>
                     <div class="form-group">
@@ -47,23 +114,23 @@ class Personal extends React.Component {
                         <input type="email" 
                             class="form-control" 
                             id="emailInput"
-                            placeholder={this.props.email}
-                            value={this.props.email}
-                            onChange={e => this.props.updateEmail(e)}
+                            placeholder={this.state.email}
+                            value={this.state.email}
+                            onChange={e => this.updateEmail(e)}
                         ></input>
                     </div>
-                    <button className='btn btn-primary' onClick={this.props.submitPersonalInfo}>Save</button>
+                    <button className='btn btn-primary' onClick={this.submitPersonalInfo}>Save</button>
                 </form>
             </div>
             )
         } else {
             return(
                 <div className='personalContainerSubmitted'>
-                    <h1>{this.props.name} {this.props.surname}</h1>
-                    <h2 className='displayOccupation'>{this.props.occupation}</h2>
+                    <h1>{this.state.name} {this.state.surname}</h1>
+                    <h2 className='displayOccupation'>{this.state.occupation}</h2>
                     <hr/>
-                    <h4>{this.props.email}</h4>
-                    <button className='btn btn-warning editPersonalInfoButton' onClick={this.props.editPersonalInfo}>Edit</button>
+                    <h4>{this.state.email}</h4>
+                    <button className='btn btn-warning editPersonalInfoButton' onClick={this.editPersonalInfo}>Edit</button>
                 </div>
             )
         }

@@ -7,94 +7,16 @@ import Experience from './Experience.js'
 class Resume extends React.Component {
     constructor() {
         super()
-        this.updateInputName.bind(this)
-        this.updateInputSurname.bind(this)
-        this.updateOccupation.bind(this)
-        this.updateEmail.bind(this)
-        this.submitPersonalInfo.bind(this)
-        this.editPersonalInfo.bind(this)
-        this.state = {
-            editing: true,
-            name: '',
-            surname: '',
-            occupation: '',
-            email: ''
-        }
     }
 
-    updateInputName = (e) => {
-        this.setState({
-            name: e.target.value
-        })
-    }
-
-    updateInputSurname = (e) => {
-        this.setState({
-            surname: e.target.value
-        })
-    }
-
-    updateOccupation = (e) => {
-        this.setState({
-            occupation: e.target.value
-        })
-    }
-
-    updateEmail = (e) => {
-        this.setState({
-            email: e.target.value
-        })
-    }
-
-    handleValidation = () => {
-        let validForm
-        if(this.state.name === '' 
-            || this.state.surname === ''
-            || this.state.occupation === ''
-            || this.state.email === ''){
-            validForm = false
-        } else {
-            validForm = true
-        }
-        return validForm
-    }
-
-    submitPersonalInfo = (e) => {
-        e.preventDefault()
-        let validForm = this.handleValidation()
-        if(validForm){
-            this.setState({
-                editing: false
-            })
-        } else {
-            alert('All fields must be complete')
-        }
-    }
-
-    editPersonalInfo = () => {
-        this.setState({
-            editing: true
-        })
-    }
-
+    
     render(){
-        const {name, surname, editing, occupation, email} = this.state
+        
 
         return(
             <div className='resumeContainerdisplay'>
                 <div className='personalAndEducationContainer'>
-                    <Personal updateInputName={this.updateInputName}
-                              updateInputSurname={this.updateInputSurname}
-                              updateOccupation={this.updateOccupation}
-                              updateEmail={this.updateEmail}
-                              submitPersonalInfo={this.submitPersonalInfo}
-                              editPersonalInfo={this.editPersonalInfo}
-                              name={name}
-                              surname={surname}
-                              occupation={occupation}
-                              email={email}
-                              editing={editing} 
-                              />
+                    <Personal/>
                     <Education/>
                 </div>
                 <div className='experienceContainer'>
