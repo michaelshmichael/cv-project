@@ -1,48 +1,35 @@
-import React from 'react'
+import React, {useState} from 'react'
 import uniqid from 'uniqid'
 
-class Education extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            university: '',
-            qualification: '',
-            startDate: '',
-            endDate: '',
-            studyingNow: '',
-            endDateClass: '',
-            numberOfQualifications: 0,
-            qualificationArray: []
-        }
+const Education = () => {
+    const [university, setUniversity] = useState('')
+    const [qualification, setQualification] = useState('')
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [studyingNowState, setStudyingNowState] = useState(false)
+    const [endDateClassName, setEndDateClassName] = useState('')
+    const [numberOfQualifications, setNumberOfQualifications] = useState(0)
+    const [qualificationArray, setQualificationArray] = useState([])
+        
+    const updateUniversityInformation = (e) => {
+        setUniversity(e.target.value)
     }
 
-    updateUniversityInformation = (e) => {
-        this.setState({
-            university: e.target.value
-        })
+    const updateQualificationInformation = (e) => {
+        setQualification(e.target.value8)
     }
 
-    updateQualificationInformation = (e) => {
-        this.setState({
-            qualification: e.target.value
-        })
+    const updateStartDate = (e) => {
+        setStartDate(e.target.value)
     }
 
-    updateStartDate = (e) => {
-        this.setState({
-            startDate: e.target.value
-        })
+    const updateEndDate = (e) => {
+        setEndDate(e.target.value)
     }
 
-    updateEndDate = (e) => {
-        this.setState({
-            endDate: e.target.value
-        })
-    }
-
-    checkStudyingStatus = () => {
+    const checkStudyingStatus = () => {
         let studyingNow
-        if(this.state.studyingNow){
+        if(studyingNowState){
             studyingNow = true
         } else {
             studyingNow = false
@@ -50,158 +37,160 @@ class Education extends React.Component {
         return studyingNow
     }
 
-    updateStudyingStatus = () => {
-        let studyingNow = this.checkStudyingStatus()
+    const updateStudyingStatus = () => {
+        let studyingNow = checkStudyingStatus()
         if(studyingNow){
-            this.setState({
-                studyingNow: false,
-                endDateClass: 'endDate'
-            })
-            
+            setStudyingNowState(false)
+            setEndDateClassName('endDate')
         } else {
-            this.setState({
-                studyingNow: true,
-                endDateClass: 'disabledEndDate'
-            })
-            
-        }
+            setStudyingNowState(true)
+            setEndDateClassName('disabledEndDate')
+            }
     }
 
-    submitEducationInformation = (e) => {
-        console.log(this.state.numberOfQualifications)
+    const submitEducationInformation = (e) => {
         e.preventDefault()
-        let endDate
-        if(this.state.endDate === ''){
-            endDate = 'ongoing'
+        let endDateDisplay
+        if(endDate === ''){
+            endDateDisplay = 'ongoing'
         } else {
-            endDate = this.state.endDate
+            endDateDisplay = endDate
         }
         let newQualification = {
-            university: this.state.university,
-            qualification: this.state.qualification,
-            startDate: this.state.startDate,
-            endDate: endDate
+            university: university,
+            qualification: qualification,
+            startDate: startDate,
+            endDate: endDateDisplay
         }
-        this.setState({
-            qualificationArray: this.state.qualificationArray.concat(newQualification),
-            university: '',
-            qualification: '',
-            startDate: '',
-            endDate: '',
-            numberOfQualifications: this.state.numberOfQualifications+1  
-        })
+        setQualificationArray(qualificationArray.concat(newQualification))
+        setUniversity('')
+        setQualification('')
+        setStartDate('')
+        setEndDate('')
+        setNumberOfQualifications(numberOfQualifications+1)
     }
     
-
-    deleteQualification = (e) => {
+    const deleteQualification = (e) => {
         e = parseInt(e)
-        let array1 = this.state.qualificationArray.slice(0, e)
-        let array2 = this.state.qualificationArray.slice(e+1, this.state.qualificationArray.length)
+        let array1 = qualificationArray.slice(0, e)
+        let array2 = qualificationArray.slice(e+1, qualificationArray.length)
         let finalArray = array1.concat(array2)
-        this.setState({
-            qualificationArray: finalArray,
-            numberOfQualifications: this.state.numberOfQualifications-1
-        })
+        setQualificationArray(finalArray)
+        setNumberOfQualifications(numberOfQualifications-1)
     }
+    
  
-    render(){
-        let exampleClassName
-        if(this.state.numberOfQualifications > 2){
-            exampleClassName = 'educationInputHidden'
-        } else {
-            exampleClassName = 'educationInput'
-        }
-        return(
-            <div className='educationContainer'>
-            <div className={exampleClassName}>
-            <div id='switchContainer'>
-                <div className='switchText'><p>Still Studying?</p>
+    let educationInputClassName
+    let maxQualificationsWarning
+    let submittedThreeQualifications
+    if(numberOfQualifications > 2){
+        educationInputClassName = 'educationInputHidden'
+        maxQualificationsWarning = 'maxQualificationsWarning'
+        submittedThreeQualifications = true
+    } else {
+        educationInputClassName = 'educationInput'
+        maxQualificationsWarning = 'maxQualificationsWarningHidden'
+        submittedThreeQualifications = false
+    }
+
+    return(
+        <div className='educationContainer'>
+            <div className={educationInputClassName}>
+                <div id='switchContainer'>
+                    <div className='switchText'>
+                        <p>Still Studying?</p>
+                    </div>
+                    <div className="switch">
+                        <label >
+                        <input type="checkbox"
+                        onChange={updateStudyingStatus}
+                        ></input>
+                        <span className="slider round"></span>
+                        </label>
+                    </div>
                 </div>
-                <div className="switch">
-                <label >
-                    <input type="checkbox"
-                    onChange={this.updateStudyingStatus}
-                    ></input>
-                    <span className="slider round"></span>
-                </label>
-                </div>
-            </div>
-                <h3>Education Details</h3>
+            <h3>Education Details</h3>
                 <form>
-                <div class="form-group">
-                    <label for="university">University Name</label>
-                    <input type="text" 
-                        class="form-control" 
-                        id="university"
-                        placeholder={this.state.university}
-                        value={this.state.university}
-                        onChange={e => this.updateUniversityInformation(e)}
-                    ></input>
-                </div>
-                <div class="form-group">
-                    <label for="qualification">Qualification</label>
-                    <input type="text" 
-                        class="form-control" 
-                        id="qualification"
-                        placeholder={this.state.qualification}
-                        value={this.state.qualification}
-                        onChange={e => this.updateQualificationInformation(e)}
-                    ></input>
-                </div>
-                <div class="form-group">
-                    <label for="startDate">Started</label>
-                    <input type="date" 
-                        class="form-control" 
-                        id="startDate"
-                        placeholder={this.state.startDate}
-                        value={this.state.startDate}
-                        onChange={e => this.updateStartDate(e)}
-                    ></input>
-                </div>
-                <div class="form-group">
-                    <label for="endDate">Finished</label>
-                        
-                    <input type="date" 
-                        class="form-control" 
-                        id={this.state.endDateClass}
-                        placeholder={this.state.endDate}
-                        value={this.state.endDate}
-                        disabled={this.state.studyingNow}
-                        onChange={e => this.updateEndDate(e)}
-                    ></input>
-                    
-                </div>
-                <button className='btn btn-primary' onClick={e => this.submitEducationInformation(e)}>Save</button>
-            </form>
+                    <div class="form-group">
+                        <label for="university">University Name</label>
+                        <input type="text" 
+                            class="form-control" 
+                            id="university"
+                            placeholder={university}
+                            value={university}
+                            onChange={e => updateUniversityInformation(e)}
+                        ></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="qualification">Qualification</label>
+                        <input type="text" 
+                            class="form-control" 
+                            id="qualification"
+                            placeholder={qualification}
+                            value={qualification}
+                            onChange={e => updateQualificationInformation(e)}
+                        ></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Started</label>
+                        <input type="date" 
+                            class="form-control" 
+                            id="startDate"
+                            placeholder={startDate}
+                            value={startDate}
+                            onChange={e => updateStartDate(e)}
+                        ></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Finished</label>
+                        <input type="date" 
+                            class="form-control" 
+                            id={endDateClassName}
+                            placeholder={endDate}
+                            value={endDate}
+                            disabled={studyingNowState}
+                            onChange={e => updateEndDate(e)}
+                        ></input> 
+                    </div>
+                    <button className='btn btn-primary' 
+                            onClick={submitEducationInformation}
+                            disabled={submittedThreeQualifications}
+                            >Save</button>
+                </form>
             </div>
+
+            <div className={maxQualificationsWarning}>
+                <h2>MAXIMUM 3</h2>
+            </div>
+                
             <div className='educationDisplay'>
                 <div className='qualificationsContainer'>
-                {this.state.qualificationArray.map((qualification, i) => {
-                          
-                    return <div key={uniqid()} className='qualificationContainer'>
-                    <div className='qualificationDisplayLeft'>
-                        <div className='universityNameDisplay'> 
-                            {i+1}. {qualification.university} 
-                        </div>
-                        <div className='qualificationNameDisplay'>
-                            {qualification.qualification}
-                        </div>
-                        <div className='dateDisplay'>
-                            {qualification.startDate} - {qualification.endDate}
-                        </div>
-                    </div>
-                    <div className='qualificationDisplayRight'>
-                        <div className='qualificationButton'>
-                        <i id={i} onClick={e => this.deleteQualification(e.target.id)} className="fas fa-trash"></i>
-                        </div>
-                    </div>
-                </div>
-                })}
+                    {qualificationArray.map((qualification, i) => {
+                        return <div key={uniqid()} className='qualificationContainer'>
+                                <div className='qualificationDisplayLeft'>
+                                    <div className='universityNameDisplay'> 
+                                        {i+1}. {qualification.university} 
+                                    </div>
+                                    <div className='qualificationNameDisplay'>
+                                        {qualification.qualification}
+                                    </div>
+                                    <div className='dateDisplay'>
+                                        {qualification.startDate} - {qualification.endDate}
+                                    </div>
+                                </div>
+                                <div className='qualificationDisplayRight'>
+                                    <div className='qualificationButton'>
+                                    <i id={i} onClick={e => deleteQualification(e.target.id)} 
+                                              className="fas fa-trash">
+                                    </i>
+                                    </div>
+                                </div>
+                            </div>
+                    })}
                 </div>
             </div>
         </div>
-        )
-    }
+    )
 }
 
 export default Education
